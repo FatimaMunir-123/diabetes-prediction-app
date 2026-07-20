@@ -2,33 +2,42 @@ import streamlit as st
 import pickle
 import numpy as np
 
-# Page setup
+# Page configuration
 st.set_page_config(
     page_title="Diabetes Prediction AI",
     page_icon="🩺",
     layout="centered"
 )
 
-# Hide Streamlit branding
+# Hide Streamlit menu, footer and decoration
 st.markdown("""
 <style>
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
+[data-testid="stDecoration"] {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
-# Load model
+
+# Load Model
 model = pickle.load(open("diabetes_model.pkl", "rb"))
 
-# Load features
+# Load Features
 features = pickle.load(open("features.pkl", "rb"))
 
-# Title
-st.title("🩺 Diabetes Prediction AI")
-st.write("Enter patient information to predict diabetes risk.")
 
-# Input fields
-pregnancies = st.number_input("Pregnancies", min_value=0, max_value=20, value=1)
+# App Title
+st.title("🩺 Diabetes Prediction AI")
+st.write("Enter patient details to predict diabetes risk.")
+
+
+# User Inputs
+pregnancies = st.number_input(
+    "Pregnancies",
+    min_value=0,
+    max_value=20,
+    value=1
+)
 
 glucose = st.number_input(
     "Glucose Level",
@@ -79,7 +88,8 @@ age = st.number_input(
     value=30
 )
 
-# Prediction button
+
+# Prediction
 if st.button("Predict Diabetes"):
 
     input_data = np.array([
@@ -93,7 +103,9 @@ if st.button("Predict Diabetes"):
         age
     ]).reshape(1, -1)
 
+
     prediction = model.predict(input_data)
+
 
     if prediction[0] == 1:
         st.error("⚠️ High Risk of Diabetes")
