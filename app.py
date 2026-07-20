@@ -36,11 +36,3 @@ if st.button("🔮 Predict Temperature", use_container_width=True):
 
 st.markdown("---")
 st.caption("Developed by Fatima Munir | Machine Learning Project")
-st.markdown("""
-<style>
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-</style>
-""", unsafe_allow_html=True)
-
-
