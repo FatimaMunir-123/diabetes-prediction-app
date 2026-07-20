@@ -21,6 +21,13 @@ st.title("🩺 Diabetes Prediction System")
 st.write("Enter the patient's health information to predict diabetes.")
 
 # User Inputs
+
+st.markdown("""
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
 pregnancies = st.number_input("Pregnancies", min_value=0, max_value=20, value=1)
 glucose = st.number_input("Glucose", min_value=0, max_value=300, value=120)
 blood_pressure = st.number_input("Blood Pressure", min_value=0, max_value=200, value=70)
